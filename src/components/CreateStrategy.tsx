@@ -1,27 +1,9 @@
 import StrategyForm from '@/components/StrategyForm';
-import {StrategyStep} from '@/types/strategy';
+import {Strategy} from '@/types/strategy';
 
-export default function CreateStrategyPage({onStrategySaved}:{onStrategySaved:(strategy: {
-        id: string;
-        name: string;
-        scanner: StrategyStep;
-        buy: StrategyStep;
-        sell: StrategyStep;
-        simulation: StrategyStep;
-        status: string;
-        createdAt: string
-    }) => void}) {
+export default function CreateStrategyPage({onStrategySaved}:{onStrategySaved:(strategy: Strategy) => void}) {
 
-    const handleSave = (strategy: {
-        id: string;
-        name: string;
-        scanner: StrategyStep;
-        buy: StrategyStep;
-        sell: StrategyStep;
-        simulation: StrategyStep;
-        status: string;
-        createdAt: string
-    }) => {
+    const handleSave = (strategy: Strategy) => {
         const existingStrategies = JSON.parse(localStorage.getItem('strategies') || '[]');
         localStorage.setItem('strategies', JSON.stringify([...existingStrategies, strategy]));
         onStrategySaved(strategy);

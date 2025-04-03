@@ -5,16 +5,7 @@ import RuleBuilder from './RuleBuilder';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-const StrategyForm: React.FC<{ onSave: (strategy: {
-        id: string;
-        name: string;
-        scanner: StrategyStep;
-        buy: StrategyStep;
-        sell: StrategyStep;
-        simulation: StrategyStep;
-        status: string;
-        createdAt: string
-    }) => void }> = ({ onSave }) => {
+const StrategyForm: React.FC<{ onSave: (strategy: Strategy) => void }> = ({ onSave }) => {
     const initialStrategy: Strategy = {
         id: Date.now().toString(),
         name: '',
@@ -37,16 +28,7 @@ const StrategyForm: React.FC<{ onSave: (strategy: {
     const handleSellClicked = () => setSellClicked(true);
     const handleSimulationClicked = () => setSimulationClicked(true);
 
-    const isStrategyValid = (strat: {
-        id: string;
-        name: string;
-        scanner: StrategyStep;
-        buy: StrategyStep;
-        sell: StrategyStep;
-        simulation: StrategyStep;
-        status: string;
-        createdAt: string
-    }): boolean => {
+    const isStrategyValid = (strat: Strategy): boolean => {
         const hasName = strat.name.trim() !== '';
         const hasRules =
             (scanClicked && strat.scanner.rules.length > 0) ||
@@ -61,19 +43,10 @@ const StrategyForm: React.FC<{ onSave: (strategy: {
         const updatedStrategy = {
             ...strategy,
             name: formData.get('name') as string,
-            status: 'submitted',
+            status: 'submitted' as const,
             id: Date.now().toString(),
             createdAt: new Date().toISOString(),
         };
-
-        console.log('Updated Strategy:', updatedStrategy);
-        console.log('Has Name:', updatedStrategy.name.trim().toLowerCase() !== '');
-        console.log('Has Rules:',
-            updatedStrategy.scanner.rules.length > 0 ||
-            updatedStrategy.buy.rules.length > 0 ||
-            updatedStrategy.sell.rules.length > 0 ||
-            updatedStrategy.simulation.rules.length > 0
-        );
 
         if (!isStrategyValid(updatedStrategy)) {
             setError('Please provide a strategy name and at least one rule.');
@@ -82,7 +55,6 @@ const StrategyForm: React.FC<{ onSave: (strategy: {
         setError(null);
         onSave(updatedStrategy);
 
-        // Simulate completion
         setTimeout(() => {
             const completedStrategy = { ...updatedStrategy, status: 'completed' };
             const existingStrategies = JSON.parse(localStorage.getItem('strategies') || '[]');
@@ -92,7 +64,6 @@ const StrategyForm: React.FC<{ onSave: (strategy: {
             localStorage.setItem('strategies', JSON.stringify(updatedStrategies));
         }, 5000);
 
-        // Reset state after submission
         setStrategy(initialStrategy);
         setScanClicked(false);
         setBuyClicked(false);
