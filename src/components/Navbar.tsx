@@ -10,6 +10,7 @@ const Navbar = () => {
 
     const loginHandler = () => {
         setLogin(prev => !prev)
+        console.log(login)
     }
     return (
         <header className="w-full fixed">

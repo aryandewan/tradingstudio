@@ -22,6 +22,18 @@ Trading Studio is a web application that allows users to create custom trading s
 
 ---
 
+## Setup Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+  
+2. **Install Dependencies**:
+   ```bash
+   cd trading-studio
+   npm install
+   npm run dev
+
 ## Dependencies
 
 - Next.js: Framework for routing and rendering (Canary version for React 19 support).
