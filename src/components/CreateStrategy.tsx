@@ -1,5 +1,5 @@
 import StrategyForm from '@/components/StrategyForm';
-import {Strategy, StrategyStep} from '@/types/strategy';
+import {StrategyStep} from '@/types/strategy';
 
 export default function CreateStrategyPage({onStrategySaved}:{onStrategySaved:(strategy: {
         id: string;
