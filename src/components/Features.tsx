@@ -7,17 +7,17 @@ const Features = () => {
         {
             head: "Intuitive Strategy Builder",
             description: "Create custom trading strategies with an easy-to-use rule builder.",
-            image: "/build.svg"
+            image: "./build.svg"
         },
         {
             head: "Real-Time Status Tracking",
             description: "Monitor your strategies from draft to completion with dynamic updates.",
-            image: "/track.svg"
+            image: "./track.svg"
         },
         {
             head: "Flexible Workflow",
             description: "Draft strategies or submit them for simulation with a single click.",
-            image: "/work.svg"
+            image: "./work.svg"
         },
     ]
     return (
