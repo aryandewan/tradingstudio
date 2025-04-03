@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import {Strategy, StrategyStep} from '@/types/strategy';
+import {Strategy} from '@/types/strategy';
 import RuleBuilder from './RuleBuilder';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
